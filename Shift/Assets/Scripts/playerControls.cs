@@ -14,11 +14,8 @@ public class playerControls : MonoBehaviour {
 	public LayerMask mask;
 
 	Vector3 pos;
-<<<<<<< HEAD
 	bool isPast = true;
-=======
 	public int hp = 3,maxHP = 3;
->>>>>>> 08208d9a8e89ff7345ef888444b12349e3b6ef01
 	//Transform tr;
 	//bool collided = false; 
 
@@ -69,7 +66,6 @@ public class playerControls : MonoBehaviour {
 
 		// Shift stuffs 
 		if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) {
-<<<<<<< HEAD
 			if (isPast == true) {
 				//transform.Translate (40, 0, 0, Space.World);
 				transform.position = new Vector3 (transform.position.x + 40f, transform.position.y, transform.position.z);
@@ -83,10 +79,8 @@ public class playerControls : MonoBehaviour {
 			}
 		}	
 
-=======
 			//print ("Doki doki");
 			//print (count++);
-		}
 
 		if (hp == 0) {
 			GameOver.gameObject.SetActive (true);
@@ -95,7 +89,6 @@ public class playerControls : MonoBehaviour {
 
 		float widthSize = ((float)hp / maxHP) * 1f;
 		redBar.transform.localScale = new Vector2 (widthSize, redBar.transform.localScale.y);
->>>>>>> 08208d9a8e89ff7345ef888444b12349e3b6ef01
 	}
 
 	//OnTriggerEnter2D is called whenever this object overlaps with a trigger collider.

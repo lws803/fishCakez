@@ -15,8 +15,8 @@ public class HPBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float widthSize = (currentHP / maxHP) * 128f;
-		redBar.sizeDelta = new Vector2 (widthSize, 38.4f);
+		float widthSize = (currentHP / maxHP) * 565.85f;
+		redBar.sizeDelta = new Vector2 (widthSize, 108.7f);
 	}
 
 	public void damaged(float amount){

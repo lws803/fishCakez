@@ -51,13 +51,14 @@ public class playerControls : MonoBehaviour {
 	//OnTriggerEnter2D is called whenever this object overlaps with a trigger collider.
 	void OnCollisionEnter2D(Collision2D other) 
 	{
-		print ("Collided");
 		//Check the provided Collider2D parameter other to see if it is tagged "PickUp", if it is...
 		if (other.gameObject.CompareTag ("PickUp")) 
 		{
 			// Dump in some collder code here
+			print ("Pick up detected");
 		}else{
 			//collided = true;
+			print ("Collided");
 		}
 	}
 

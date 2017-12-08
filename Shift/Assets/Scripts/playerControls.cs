@@ -17,12 +17,12 @@ public class playerControls : MonoBehaviour {
 	bool isPast = true;
 
 	public int hp = 3,maxHP = 3;
-	int flag_def = 0;
+	bool flag_def = false;
 	int timer = 0;
 	//Transform tr;
 	//bool collided = false; 
 	void stopDef(){
-		flag_def = 0;
+		flag_def = false;
 	}
 
 	// Use this for initialization
@@ -104,7 +104,7 @@ public class playerControls : MonoBehaviour {
 			// Dump in some collder code here
 			print ("Pick up detected");
 		} else if (other.gameObject.CompareTag ("PickUp")) {
-			flag_def = 1;
+			flag_def = true;
 			print ("Picked up DEF");
 			Invoke ("stopDef", 5);
 		} else if (other.gameObject.CompareTag ("Water") && !flag_def) {

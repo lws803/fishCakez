@@ -43,7 +43,7 @@ public class playerControls : MonoBehaviour {
 			animator.SetInteger("Direction", 3);
 
 		}
-		if (Input.GetKey(KeyCode.W) && transform.position == pos && hitup.collider    == null)
+		if (Input.GetKey(KeyCode.W) && transform.position == pos && hitup.collider == null)
 		{           //(0,1)
 			pos += Vector3.up * gridSize; // Add 1 to pos.y
 			animator.SetInteger("Direction", 2);

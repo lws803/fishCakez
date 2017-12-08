@@ -87,8 +87,9 @@ public class playerControls : MonoBehaviour {
 			hp--;
 		} else{
 			//collided = true;
-			print ("Collided");
 		}
+		print ("Collided");
+
 	}
 
 }

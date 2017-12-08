@@ -6,20 +6,26 @@ using UnityEngine.UI;
 public class playerControls : MonoBehaviour {
 
 	Animator animator;
+	public Canvas GameOver;
 
 	public float speed;				//Floating point variable to store the player's movement speed.
 	public float gridSize;
-
+	public GameObject redBar;
 	public LayerMask mask;
 
 	Vector3 pos;
+<<<<<<< HEAD
 	bool isPast = true;
+=======
+	public int hp = 3,maxHP = 3;
+>>>>>>> 08208d9a8e89ff7345ef888444b12349e3b6ef01
 	//Transform tr;
 	//bool collided = false; 
 
 	// Use this for initialization
 	void Start()
 	{
+		hp = 3;
 		pos = transform.position;
 		//tr = transform;
 		animator = this.GetComponent<Animator>();
@@ -63,6 +69,7 @@ public class playerControls : MonoBehaviour {
 
 		// Shift stuffs 
 		if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) {
+<<<<<<< HEAD
 			if (isPast == true) {
 				//transform.Translate (40, 0, 0, Space.World);
 				transform.position = new Vector3 (transform.position.x + 40f, transform.position.y, transform.position.z);
@@ -76,17 +83,31 @@ public class playerControls : MonoBehaviour {
 			}
 		}	
 
+=======
+			//print ("Doki doki");
+			//print (count++);
+		}
+
+		if (hp == 0) {
+			GameOver.gameObject.SetActive (true);
+			Time.timeScale = 0;
+		}
+
+		float widthSize = ((float)hp / maxHP) * 1f;
+		redBar.transform.localScale = new Vector2 (widthSize, redBar.transform.localScale.y);
+>>>>>>> 08208d9a8e89ff7345ef888444b12349e3b6ef01
 	}
 
 	//OnTriggerEnter2D is called whenever this object overlaps with a trigger collider.
 	void OnCollisionEnter2D(Collision2D other) 
 	{
 		//Check the provided Collider2D parameter other to see if it is tagged "PickUp", if it is...
-		if (other.gameObject.CompareTag ("PickUp")) 
-		{
+		if (other.gameObject.CompareTag ("PickUp")) {
 			// Dump in some collder code here
 			print ("Pick up detected");
-		}else{
+		} else if (other.gameObject.CompareTag ("Water")) {
+			hp--;
+		} else{
 			//collided = true;
 			print ("Collided");
 		}

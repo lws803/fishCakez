@@ -101,6 +101,8 @@ public class playerControls : MonoBehaviour {
 			print ("Pick up detected");
 		} else if (other.gameObject.CompareTag ("Water")) {
 			hp--;
+		} else if (other.gameObject.CompareTag ("bullet")) {
+			hp--;
 		} else{
 			//collided = true;
 			print ("Collided");

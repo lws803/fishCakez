@@ -65,7 +65,8 @@ public class playerControls : MonoBehaviour {
 		transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);    // Move there
 
 		// Shift stuffs 
-		if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) {
+		if ((Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) && transform.position.x - (int)transform.position.x == 0 && 
+			transform.position.y - (int)transform.position.y == 0) {
 			if (isPast == true) {
 				//transform.Translate (40, 0, 0, Space.World);
 				transform.position = new Vector3 (transform.position.x + 40f, transform.position.y, transform.position.z);

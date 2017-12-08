@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class HPBar : MonoBehaviour {
 
-	public float currentHP;
-	public float maxHP;
-	public RectTransform redBar;
+	float currentHP = GameObject.Find("Player 2").GetComponent<playerControls>().hp;
+	float maxHP =3;
+	public GameObject redBar;
 
 	// Use this for initialization
 	void Start () {
@@ -15,8 +15,8 @@ public class HPBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float widthSize = (currentHP / maxHP) * 565.85f;
-		redBar.sizeDelta = new Vector2 (widthSize, 108.7f);
+		float widthSize = (currentHP / maxHP) * 1f;
+		redBar.transform.localScale = new Vector2 (widthSize, 0.66f);
 	}
 
 	public void damaged(float amount){

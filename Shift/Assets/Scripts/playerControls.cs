@@ -13,7 +13,7 @@ public class playerControls : MonoBehaviour {
 	public LayerMask mask;
 
 	Vector3 pos;
-	int count = 0;
+	bool isPast = true;
 	//Transform tr;
 	//bool collided = false; 
 
@@ -26,7 +26,8 @@ public class playerControls : MonoBehaviour {
 	}
 
 	void FixedUpdate()
-	{
+	{	
+		
 		//====RayCasts====//
 		RaycastHit2D hitup = Physics2D.Raycast(transform.position, Vector2.up, gridSize, mask.value);
 		RaycastHit2D hitdown = Physics2D.Raycast(transform.position, Vector2.down, gridSize, mask.value);
@@ -56,14 +57,25 @@ public class playerControls : MonoBehaviour {
 			animator.SetInteger("Direction", 0);
 
 		}
+
 		//The Current Position = Move To (the current position to the new position by the speed * Time.DeltaTime)
 		transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);    // Move there
 
 		// Shift stuffs 
 		if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) {
-			//print ("Doki doki");
-			//print (count++);
-		}
+			if (isPast == true) {
+				//transform.Translate (40, 0, 0, Space.World);
+				transform.position = new Vector3 (transform.position.x + 40f, transform.position.y, transform.position.z);
+				pos = transform.position;
+				isPast = false;
+			} else {
+				//transform.Translate (-40, 0, 0, Space.World);
+				transform.position = new Vector3 (transform.position.x - 40f, transform.position.y, transform.position.z);
+				pos = transform.position;
+				isPast = true;
+			}
+		}	
+
 	}
 
 	//OnTriggerEnter2D is called whenever this object overlaps with a trigger collider.
@@ -78,6 +90,7 @@ public class playerControls : MonoBehaviour {
 			//collided = true;
 			print ("Collided");
 		}
+
 	}
 
 }

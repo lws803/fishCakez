@@ -15,9 +15,15 @@ public class playerControls : MonoBehaviour {
 
 	Vector3 pos;
 	bool isPast = true;
+
 	public int hp = 3,maxHP = 3;
+	int flag_def = 0;
+	int timer = 0;
 	//Transform tr;
 	//bool collided = false; 
+	void stopDef(){
+		flag_def = 0;
+	}
 
 	// Use this for initialization
 	void Start()
@@ -58,7 +64,6 @@ public class playerControls : MonoBehaviour {
 		{           //(0,-1)
 			pos += Vector3.down * gridSize;// Add -1 to pos.y
 			animator.SetInteger("Direction", 0);
-
 		}
 
 		//The Current Position = Move To (the current position to the new position by the speed * Time.DeltaTime)
@@ -87,7 +92,6 @@ public class playerControls : MonoBehaviour {
 			GameOver.gameObject.SetActive (true);
 			Time.timeScale = 0;
 		}
-
 		float widthSize = ((float)hp / maxHP) * 1f;
 		redBar.transform.localScale = new Vector2 (widthSize, redBar.transform.localScale.y);
 	}
@@ -99,13 +103,18 @@ public class playerControls : MonoBehaviour {
 		if (other.gameObject.CompareTag ("PickUp")) {
 			// Dump in some collder code here
 			print ("Pick up detected");
-		} else if (other.gameObject.CompareTag ("Water")) {
+		} else if (other.gameObject.CompareTag ("PickUp")) {
+			flag_def = 1;
+			print ("Picked up DEF");
+			Invoke ("stopDef", 5);
+		} else if (other.gameObject.CompareTag ("Water") && !flag_def) {
+			hp--;
+		} else if (other.gameObject.CompareTag ("bullet") && !flag_def) {
 			hp--;
 		} else{
 			//collided = true;
 			print ("Collided");
 		}
-
 	}
 
 }

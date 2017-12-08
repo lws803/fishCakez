@@ -11,7 +11,6 @@ public class playerControls : MonoBehaviour {
 	public LayerMask mask;
 
 	Vector3 pos;
-	int count = 0;
 	//Transform tr;
 	//bool collided = false; 
 

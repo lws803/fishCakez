@@ -11,6 +11,7 @@ public class playerControls : MonoBehaviour {
 	public LayerMask mask;
 
 	Vector3 pos;
+	int count = 0;
 	//Transform tr;
 	//bool collided = false; 
 
@@ -58,7 +59,11 @@ public class playerControls : MonoBehaviour {
 		//The Current Position = Move To (the current position to the new position by the speed * Time.DeltaTime)
 		transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);    // Move there
 
-
+		// Shift stuffs 
+		if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) {
+			//print ("Doki doki");
+			//print (count++);
+		}
 	}
 
 	//OnTriggerEnter2D is called whenever this object overlaps with a trigger collider.

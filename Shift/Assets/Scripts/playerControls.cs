@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class playerControls : MonoBehaviour {
 
 	Animator animator;
-	Slider slider;
-	public Canvas Gameover;
+
 	public float speed;				//Floating point variable to store the player's movement speed.
 	public float gridSize;
 
@@ -24,7 +23,6 @@ public class playerControls : MonoBehaviour {
 		pos = transform.position;
 		//tr = transform;
 		animator = this.GetComponent<Animator>();
-		slider = this.GetComponent<Slider>();
 	}
 
 	void FixedUpdate()
@@ -65,10 +63,6 @@ public class playerControls : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) {
 			//print ("Doki doki");
 			//print (count++);
-		}
-		if (slider.value == 0) {
-			Gameover.gameObject.SetActive (true);
-			Time.timeScale = 0;
 		}
 	}
 

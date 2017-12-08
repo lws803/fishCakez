@@ -18,7 +18,7 @@ using UnityEditor;
 [RequireComponent(typeof(Camera))]
 public class PixelPerfectCamera : MonoBehaviour {
 
-    public static int PIXELS_PER_UNIT = 100;
+    public static int PIXELS_PER_UNIT = 80;
 
     public enum Dimension {Width, Height};
     public enum ConstraintType {None, Horizontal, Vertical};

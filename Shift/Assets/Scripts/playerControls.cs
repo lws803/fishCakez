@@ -6,31 +6,38 @@ public class playerControls : MonoBehaviour {
 
 	public float speed;				//Floating point variable to store the player's movement speed.
 
-	private Rigidbody2D rb2d;		//Store a reference to the Rigidbody2D component required to use 2D Physics.
+	Vector3 pos;
+	Transform tr;
 
 	// Use this for initialization
 	void Start()
 	{
-		//Get and store a reference to the Rigidbody2D component so that we can access it.
-		rb2d = GetComponent<Rigidbody2D> ();
-
-		//Initialize count to zero.
+		pos = transform.position;
+		tr = transform;
 	}
 
-	//FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
 	void FixedUpdate()
 	{
-		//Store the current horizontal input in the float moveHorizontal.
-		float moveHorizontal = Input.GetAxis ("Horizontal");
+		if (Input.GetKey(KeyCode.D) && tr.position == pos)
+		{
+			pos += Vector3.right;
+		}
+		else if (Input.GetKey(KeyCode.A) && tr.position == pos)
+		{
+			pos += Vector3.left;
+		}
+		else if (Input.GetKey(KeyCode.W) && tr.position == pos)
+		{
+			pos += Vector3.up;
+		}
+		else if (Input.GetKey(KeyCode.S) && tr.position == pos)
+		{
+			pos += Vector3.down;
+		}
 
-		//Store the current vertical input in the float moveVertical.
-		float moveVertical = Input.GetAxis ("Vertical");
+		transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
 
-		//Use the two store floats to create a new Vector2 variable movement.
-		Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
 
-		//Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
-		rb2d.velocity = movement*speed;
 	}
 
 	//OnTriggerEnter2D is called whenever this object overlaps with a trigger collider.
@@ -39,7 +46,7 @@ public class playerControls : MonoBehaviour {
 		//Check the provided Collider2D parameter other to see if it is tagged "PickUp", if it is...
 		if (other.gameObject.CompareTag ("PickUp")) 
 		{
-			
+			// Dump in some collder code here
 		}
 
 

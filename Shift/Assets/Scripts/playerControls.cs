@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class playerControls : MonoBehaviour {
 
@@ -12,6 +14,8 @@ public class playerControls : MonoBehaviour {
 	public float gridSize;
 	public GameObject redBar;
 	public LayerMask mask;
+
+	public GameObject lights;
 
 	Vector3 pos;
 	bool isPast = true;
@@ -76,12 +80,14 @@ public class playerControls : MonoBehaviour {
 				//transform.Translate (40, 0, 0, Space.World);
 				transform.position = new Vector3 (transform.position.x + 40f, transform.position.y, transform.position.z);
 				pos = transform.position;
+				lights.SetActive (true);
 				isPast = false;
 			} else {
 				//transform.Translate (-40, 0, 0, Space.World);
 				transform.position = new Vector3 (transform.position.x - 40f, transform.position.y, transform.position.z);
 				pos = transform.position;
 				isPast = true;
+				lights.SetActive (false);
 			}
 		}	
 
@@ -94,25 +100,26 @@ public class playerControls : MonoBehaviour {
 		}
 		float widthSize = ((float)hp / maxHP) * 1f;
 		redBar.transform.localScale = new Vector2 (widthSize, redBar.transform.localScale.y);
+
+		if (transform.position.x == 7 && transform.position.y == 6) {
+			SceneManager.LoadScene(1);
+		}
+			
 	}
 
 	//OnTriggerEnter2D is called whenever this object overlaps with a trigger collider.
 	void OnCollisionEnter2D(Collision2D other) 
 	{
+
 		//Check the provided Collider2D parameter other to see if it is tagged "PickUp", if it is...
-		if (other.gameObject.tag == "DEF"){
-			flag_def = true;
-			other.gameObject.SetActive (false);
-			print ("Picked up DEF");
-			Invoke ("stopDef", 5);
-		} else if (other.gameObject.CompareTag ("Water") && !flag_def) {
+		if (other.gameObject.CompareTag ("Water") && !flag_def) {
 			hp--;
 		} else if (other.gameObject.CompareTag ("bullet") && !flag_def) {
 			hp--;
 		} else{
-			//collided = true;
-			print ("Collided");
 		}
+
 	}
 
 }
+ 

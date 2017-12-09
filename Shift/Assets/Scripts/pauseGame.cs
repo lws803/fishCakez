@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class pauseGame : MonoBehaviour {
 	public Canvas pauseMenu;
@@ -22,5 +23,10 @@ public class pauseGame : MonoBehaviour {
 				Time.timeScale = 1;
 			}
 		}
+	}
+
+	public void restartGame () {
+		SceneManager.LoadScene(1);
+		Time.timeScale = 1;
 	}
 }

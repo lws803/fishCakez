@@ -32,7 +32,6 @@ public class playerControls : MonoBehaviour {
 	// Use this for initialization
 	void Start()
 	{
-		hp = 3;
 		pos = transform.position;
 		//tr = transform;
 		animator = this.GetComponent<Animator>();
@@ -40,7 +39,7 @@ public class playerControls : MonoBehaviour {
 
 	void FixedUpdate()
 	{	
-		
+		hp = PlayerPrefs.GetInt ("hp");
 		//====RayCasts====//
 		RaycastHit2D hitup = Physics2D.Raycast(transform.position, Vector2.up, gridSize, mask.value);
 		RaycastHit2D hitdown = Physics2D.Raycast(transform.position, Vector2.down, gridSize, mask.value);
@@ -90,18 +89,18 @@ public class playerControls : MonoBehaviour {
 				lights.SetActive (false);
 			}
 		}	
-
-			//print ("Doki doki");
-			//print (count++);
-
+			
 		if (hp == 0) {
 			GameOver.gameObject.SetActive (true);
+			//Destroy (this);
 			Time.timeScale = 0;
 		}
-		float widthSize = ((float)hp / maxHP) * 1f;
+		float widthSize = ((float)PlayerPrefs.GetInt("hp") / maxHP) * 1f;
 		redBar.transform.localScale = new Vector2 (widthSize, redBar.transform.localScale.y);
 
-		if (transform.position.x == 7 && transform.position.y == 6) {
+		//PlayerPrefs.SetInt("hp", hp);
+
+		if (transform.position.x == 7 && transform.position.y == 6 && SceneManager.GetActiveScene ().name != "bossFight") {
 			SceneManager.LoadScene(1);
 		}
 			
@@ -112,13 +111,13 @@ public class playerControls : MonoBehaviour {
 	{
 
 		//Check the provided Collider2D parameter other to see if it is tagged "PickUp", if it is...
-		if (other.gameObject.CompareTag ("Water") && !flag_def) {
+		if (other.gameObject.CompareTag ("Water")) {
 			hp--;
-		} else if (other.gameObject.CompareTag ("bullet") && !flag_def) {
+			PlayerPrefs.SetInt("hp", hp);
+		} else if (other.gameObject.CompareTag ("bullet")) {
 			hp--;
-		} else{
+			PlayerPrefs.SetInt("hp", hp);
 		}
-
 	}
 
 }

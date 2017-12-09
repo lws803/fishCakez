@@ -13,7 +13,7 @@ public class enemy : MonoBehaviour {
 	//public ParticleSystem muzzleFlash;
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating("fire", 2.0f, 1f);
+		Invoke ("startFiring", 7);
 	}
 	
 	// Update is called once per frame
@@ -23,6 +23,12 @@ public class enemy : MonoBehaviour {
 	void FixedUpdate () {
 		//fire ();
 	}
+
+
+	void startFiring () {
+		InvokeRepeating("fire", 2.0f, 1f);
+	}
+
 
 	void fire () {
 		if (Mathf.Sqrt (Mathf.Pow ((this.transform.position.x - player.position.x), 2) + Mathf.Pow ((this.transform.position.y - player.position.y), 2)) < fireRange) {

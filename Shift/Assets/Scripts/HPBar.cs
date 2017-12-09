@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HPBar : MonoBehaviour {
 
-	float currentHP = GameObject.Find("Player 2").GetComponent<playerControls>().hp;
+	float currentHP = GameObject.Find("Player 3").GetComponent<playerControls>().hp;
 	float maxHP =3;
 	public GameObject redBar;
 

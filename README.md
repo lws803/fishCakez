@@ -17,7 +17,8 @@ A time-shifter returns to a fallen civilisation in ruins. Using her time-shiftin
 
 c. Group name and members
 
-Made by FishCakez
+Made by FishCakez:
+Marcus Phua Zheng Jie
 
 2. Game Source
 

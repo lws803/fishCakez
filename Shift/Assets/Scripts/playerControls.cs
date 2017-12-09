@@ -100,11 +100,9 @@ public class playerControls : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other) 
 	{
 		//Check the provided Collider2D parameter other to see if it is tagged "PickUp", if it is...
-		if (other.gameObject.CompareTag ("PickUp")) {
-			// Dump in some collder code here
-			print ("Pick up detected");
-		} else if (other.gameObject.CompareTag ("PickUp")) {
+		if (other.gameObject.tag == "DEF"){
 			flag_def = true;
+			other.gameObject.SetActive (false);
 			print ("Picked up DEF");
 			Invoke ("stopDef", 5);
 		} else if (other.gameObject.CompareTag ("Water") && !flag_def) {

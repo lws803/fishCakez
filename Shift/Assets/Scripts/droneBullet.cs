@@ -8,6 +8,8 @@ public class droneBullet : MonoBehaviour {
 
 	public float range;
 	public float maxSpeed;
+	public int hp = 3,maxHP = 3;
+
 	//public GameObject dissipateParticle;
 
 	// Use this for initialization
